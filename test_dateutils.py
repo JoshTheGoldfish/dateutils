@@ -56,24 +56,6 @@ class TestDateUtilsDatesForWeekday(unittest.TestCase):
 		self.assertNotIn(date(2015,1,2),  self.dates)
 		self.assertNotIn(date(2015,1,14), self.dates)
 
-class TestDateUtilsForwardStepsToTarget():
-	"""Test dateutisl.forward_steps_to_target(needle, haystack, start=0)"""
-	def setUp(self):
-		self.haystack     = 0,1,2,3,4,5,6
-		self.needle       = 5
-		self.wrong_needle = 7
-		self.start1       = 6
-		self.start2       = 2
-
-	def test_forward_steps_to_target_returns_int(self):
-		self.assertIsInstance(dateutils.forward_steps_to_target(self.needle, self.haystack), int)
-
-	def test_forward_steps_to_target_returns_correct_values(self):
-		self.assertEqual(dateutils.forward_steps_to_target(self.needle,       self.haystack             ),  5)
-		self.assertEqual(dateutils.forward_steps_to_target(self.needle,       self.haystack, self.start1),  7)
-		self.assertEqual(dateutils.forward_steps_to_target(self.needle,       self.haystack, self.start2),  3)
-		self.assertEqual(dateutils.forward_steps_to_target(self.wrong_needle, self.haystack             ), -1)
-
 class TestDateUtilsDaysToWeekday(unittest.TestCase):
 	"""Test dateutils.days_to_weekday(given_date, target_weekday)"""
 	def setUp(self):

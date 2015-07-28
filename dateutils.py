@@ -55,10 +55,8 @@ def date_of_upcoming_weekday(given_date, weekday):
 
 	return given_date + timedelta(days=days_to_weekday(given_date, weekday))
 
-###
 ### Abstractions on top of date_of_upcoming_weekday to make code more readable
 ###	Note: These do not currently have tests
-###
 def date_of_upcoming_monday(given_date):
 	return date_of_upcoming_weekday(given_date, 0)
 
@@ -86,12 +84,10 @@ def days_to_weekday(given_date, target_weekday):
 	assert type(given_date)     is date
 	assert type(target_weekday) is int
 
-	return forward_steps_to_target(target_weekday, (0,1,2,3,4,5,6), given_date.weekday())
+	return _forward_steps_to_target(target_weekday, (0,1,2,3,4,5,6), given_date.weekday())
 
-###
 ### Abstractions on top of days_to_weekday to make code more readable
 ###	Note: These do not currently have tests
-###
 def days_until_monday(given_date):
 	return days_to_weekday(given_date, 0)
 
@@ -113,7 +109,7 @@ def days_until_saturday(given_date):
 def days_until_sunday(given_date):
 	return days_to_weekday(given_date, 6)
 
-def forward_steps_to_target(needle, haystack, start=0):
+def _forward_steps_to_target(needle, haystack, start=0):
 	"""A needle to search for in a SORTED HAYSTACK OF INTEGERS. It starts the search at the index
 	of start. It will return the amount of steps forward from the start of the search
 	to the end. If the needle is before the start location, the returned value will be the amount
